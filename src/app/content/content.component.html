@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-4">
+      <form>
+        <div class="row">
+          <img class="center" src="../assets/images/vase.png" alt="">
+          <div class="input-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Search.."
+              value="วัตถุรูปแท่งสีแดง"
+              #searchWord
+            >
+            <span class="input-group-btn">
+              <button 
+                class="btn btn-secondary fa fa-search" 
+                type="submit"
+                (click)="onSearch(searchWord)"
+              ></button>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="libraryWord">
+  <li *ngFor="let data of libraryWord"> {{ data }} </li>
+</div>
