@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>#</th>
+            <th>คีย์เวิร์ด</th>
+            <th>คำที่เกี่ยวข้อง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of tableData ; let i=index">
+            <th scope="row">{{ i+1 }}</th>
+            <td>{{ data.key }}</td>
+            <td>{{ data.ref }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

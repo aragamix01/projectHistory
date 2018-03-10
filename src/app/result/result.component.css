@@ -1,0 +1,16 @@
+.content {
+    margin-top: 150px;
+}
+
+.searchBox {
+    margin-top : 30px;
+}
+.head {
+    background-color: #42A5F5;
+    height: 100px;
+}
+
+.imgShow {
+    max-width: 200px;
+    padding: 20px;
+}

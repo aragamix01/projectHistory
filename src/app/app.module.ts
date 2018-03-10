@@ -7,21 +7,28 @@ import { HeaderComponent } from './header/header.component';
 import { ContentComponent } from './content/content.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AppService } from './app.service';
+import { AppRoutingModule } from './app-routing.module';
+import { ResultComponent } from './result/result.component';
+import { KeyTableComponent } from './content/key-table/key-table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ContentComponent
+    ContentComponent,
+    ResultComponent,
+    KeyTableComponent
   ],
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from './content.service';
+import { AppService } from '../app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -10,7 +12,9 @@ import { ContentService } from './content.service';
 export class ContentComponent implements OnInit {
 
   searchWord = '';
-  constructor(private ctService: ContentService) { }
+  constructor(private ctService: ContentService,
+              private appService: AppService,
+              private router: Router) { }
   tableData = [];
   libraryWord = [];
 
@@ -61,5 +65,7 @@ export class ContentComponent implements OnInit {
       });
     }
     console.log(this.libraryWord);
+    this.appService.setKeywords(this.libraryWord);
+    this.router.navigate(['result']);
   }
 }
