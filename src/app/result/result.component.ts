@@ -8,10 +8,12 @@ import { ResultService } from './result.service';
   styleUrls: ['./result.component.css'],
   providers: [ResultService]
 })
+
 export class ResultComponent implements OnInit {
 
   listOfKeywords = [];
   listOfObjects = [];
+  showObject = [];
 
   constructor(private appService: AppService,
               private resultService: ResultService) { }
@@ -20,6 +22,43 @@ export class ResultComponent implements OnInit {
     this.listOfKeywords = this.appService.getKeywords();
     this.resultService.getObjects().then((data) => {
       this.listOfObjects = data;
+
+      if ( this.listOfObjects.length > 0 ) {
+        this.listOfObjects.forEach(object => {
+          this.listOfKeywords.forEach(keyword => {
+            object.keyword.forEach(objKeyword => {
+              if (objKeyword === keyword) {
+                object.match++;
+              }
+            });
+          });
+        });
+
+        let max = 0;
+        let lengthValue = 0;
+        let manageIndex = -1;
+
+        this.listOfObjects.length > 10 ? lengthValue = 10 : lengthValue = this.listOfObjects.length;
+        for (let index = 0; index < lengthValue; index++) {
+          max = 0;
+          manageIndex = 0;
+            this.listOfObjects.forEach((object, mIndex) => {
+              console.log(object.match);
+              if (object.match > max) {
+                max = this.listOfObjects[mIndex].match;
+                manageIndex = mIndex;
+              }
+            });
+            console.log('----------');
+
+            if (this.listOfObjects[manageIndex].match > 0 ) {
+              this.showObject.push(this.listOfObjects[manageIndex]);
+              this.listOfObjects.splice(manageIndex, 1);
+            }
+        }
+
+        console.log(this.showObject);
+      }
     });
   }
 

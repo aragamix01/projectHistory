@@ -6,7 +6,6 @@ export class AppService {
 
     setKeywords(listKeywords: string[]) {
         this.listKeywords = listKeywords;
-        console.log(this.listKeywords);
     }
 
     getKeywords() {
