@@ -20,13 +20,7 @@ export class ContentComponent implements OnInit {
   tableData = [];
   libraryWord = [];
 
-  ngOnInit() {
-    // this.ctService.getTable().then(
-    //   (data) => {
-    //     this.TrueTableData = data;
-    //   }
-    // );
-  }
+  ngOnInit() {}
 
   onSearch(search) {
     this.ctService.getTable().then(
