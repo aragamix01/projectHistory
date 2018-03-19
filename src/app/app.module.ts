@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 import { AppRoutingModule } from './app-routing.module';
 import { ResultComponent } from './result/result.component';
 import { KeyTableComponent } from './content/key-table/key-table.component';
+import { ContentService } from './content/content.service';
 
 
 @NgModule({
@@ -28,7 +29,7 @@ import { KeyTableComponent } from './content/key-table/key-table.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AppService],
+  providers: [AppService, ContentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,10 +20,23 @@ export class ResultComponent implements OnInit {
 
   ngOnInit() {
     this.listOfKeywords = this.appService.getKeywords();
+    this.showResult();
+  }
+
+  onSearch(search) {
+    this.appService.search(search).then(
+      () => {
+        this.listOfKeywords = this.appService.getKeywords();
+        this.showObject = [];
+        this.showResult();
+      }
+    );
+  }
+
+  showResult() {
     this.resultService.getObjects().then((data) => {
       this.listOfObjects = data;
-
-      if ( this.listOfObjects.length > 0 ) {
+      if (this.listOfObjects.length > 0) {
         this.listOfObjects.forEach(object => {
           this.listOfKeywords.forEach(keyword => {
             object.keyword.forEach(objKeyword => {
@@ -42,24 +55,19 @@ export class ResultComponent implements OnInit {
         for (let index = 0; index < lengthValue; index++) {
           max = 0;
           manageIndex = 0;
-            this.listOfObjects.forEach((object, mIndex) => {
-              console.log(object.match);
-              if (object.match > max) {
-                max = this.listOfObjects[mIndex].match;
-                manageIndex = mIndex;
-              }
-            });
-            console.log('----------');
-
-            if (this.listOfObjects[manageIndex].match > 0 ) {
-              this.showObject.push(this.listOfObjects[manageIndex]);
-              this.listOfObjects.splice(manageIndex, 1);
+          this.listOfObjects.forEach((object, mIndex) => {
+            if (object.match > max) {
+              max = this.listOfObjects[mIndex].match;
+              manageIndex = mIndex;
             }
-        }
+          });
 
-        console.log(this.showObject);
+          if (this.listOfObjects[manageIndex].match > 0) {
+            this.showObject.push(this.listOfObjects[manageIndex]);
+            this.listOfObjects.splice(manageIndex, 1);
+          }
+        }
       }
     });
   }
-
 }
