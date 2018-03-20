@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContentComponent } from './content/content.component';
 import { ResultComponent } from './result/result.component';
 import { KeyTableComponent } from './content/key-table/key-table.component';
+import { ManageKeyTableComponent } from './content/key-table/manage-key-table/manage-key-table.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'search', pathMatch: 'full' },
     { path: 'search', component: ContentComponent },
     { path: 'result', component: ResultComponent },
     { path: 'table', component: KeyTableComponent },
+    { path: 'manage', component: ManageKeyTableComponent },
 ];
 
 @NgModule({

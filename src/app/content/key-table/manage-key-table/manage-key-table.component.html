@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <form [formGroup]="keyForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="key">Key</label>
+          <input type="text" id="key" formControlName="key" class="form-control">
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+</div>
