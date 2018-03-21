@@ -1,3 +1,7 @@
-.dark-modal .modal-lg {
-    max-width: 80% !important;
+.container {
+    margin-top: 50px;
+}
+
+table.overflow {
+    overflow: auto;
 }

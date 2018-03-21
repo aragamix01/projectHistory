@@ -13,7 +13,8 @@ import { ResultComponent } from './result/result.component';
 import { KeyTableComponent } from './content/key-table/key-table.component';
 import { ContentService } from './content/content.service';
 import { ManageKeyTableComponent } from './content/key-table/manage-key-table/manage-key-table.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,8 @@ import { ManageKeyTableComponent } from './content/key-table/manage-key-table/ma
     HttpModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
   ],
   providers: [AppService, ContentService],
   bootstrap: [AppComponent]

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../content.service';
 import { Http, Response } from '@angular/http';
 import { KeyTableService } from './key-table.service';
+import { MatDialog } from '@angular/material';
+import { ManageKeyTableComponent } from './manage-key-table/manage-key-table.component';
 
 @Component({
   selector: 'app-key-table',
@@ -17,6 +19,7 @@ export class KeyTableComponent implements OnInit {
   constructor(private ctService: ContentService,
               private kTService: KeyTableService,
               private http: Http,
+              public dialog: MatDialog,
             ) { }
 
   ngOnInit() {
@@ -27,7 +30,11 @@ export class KeyTableComponent implements OnInit {
     );
   }
 
-  onSend() {
-    this.kTService.onSend();
+  openDialog() {
+    const dialogRef = this.dialog.open(ManageKeyTableComponent, {
+      height: '600px',
+      width: '80%',
+    });
   }
 }
+
