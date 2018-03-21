@@ -31,12 +31,17 @@ export class ManageKeyTableComponent implements OnInit {
       console.log(this.keyForm);
       this.ktService.onSend(this.keyForm.value);
       this.newForm();
+      this.refresh();
     } else {
       this.isCollapsed = false;
       setTimeout(() => {
         this.isCollapsed = true;
       }, 2000);
     }
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
   onAddRef() {

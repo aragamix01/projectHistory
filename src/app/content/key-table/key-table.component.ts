@@ -36,5 +36,11 @@ export class KeyTableComponent implements OnInit {
       width: '80%',
     });
   }
+
+  onDelete(number: number) {
+    console.log(number);
+    this.tableData.splice(number, 1);
+    console.log(this.tableData);
+  }
 }
 

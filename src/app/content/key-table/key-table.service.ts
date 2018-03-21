@@ -7,10 +7,10 @@ export class KeyTableService {
     constructor(private http: Http) {}
 
     onSend(data: any) {
-        const url = 'http://localhost/project/code/code/recieve.php';
+        const url = 'http://localhost/project/code/code/insertKeyTable.php';
         return this.http.post(url, data).map(
             (res: Response) => {
-                console.log(res.json());
+                console.log(res);
             },
             (error) => {
                 console.log('error');
