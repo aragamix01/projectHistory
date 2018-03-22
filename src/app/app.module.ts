@@ -19,6 +19,7 @@ import { DataTableModule } from 'primeng/datatable';
 import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { MatchingComponent } from './matching/matching.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CardModule } from 'primeng/card';
     ContentComponent,
     ResultComponent,
     KeyTableComponent,
-    ManageKeyTableComponent
+    ManageKeyTableComponent,
+    MatchingComponent
   ],
   imports: [
     BrowserModule,

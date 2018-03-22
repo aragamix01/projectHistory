@@ -31,7 +31,6 @@ export class ManageKeyTableComponent implements OnInit {
       console.log(this.keyForm);
       this.ktService.onSend(this.keyForm.value);
       this.newForm();
-      this.refresh();
     } else {
       this.isCollapsed = false;
       setTimeout(() => {
