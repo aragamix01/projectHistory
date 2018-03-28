@@ -20,6 +20,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { MatchingComponent } from './matching/matching.component';
+import { MatchEditComponent } from './matching/match-edit/match-edit.component';
+import { MatchingService } from './matching/matching.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MatchingComponent } from './matching/matching.component';
     ResultComponent,
     KeyTableComponent,
     ManageKeyTableComponent,
-    MatchingComponent
+    MatchingComponent,
+    MatchEditComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,7 @@ import { MatchingComponent } from './matching/matching.component';
     ButtonModule,
     CardModule,
   ],
-  providers: [AppService, ContentService],
+  providers: [AppService, ContentService, MatchingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

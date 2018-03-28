@@ -1,3 +1,26 @@
-<p>
-  matching works!
-</p>
+<div class="container set-content">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card fix-height">
+        <div class="card-block">
+          <div style="padding: 10px;">
+            <h4>ตารางคำที่เกี่ยวข้อง</h4>
+            <hr>
+            <p-dataTable [value]="listOfObjects" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [immutable]=false
+             selectionMode="single" (onRowSelect)="onRowSelect($event)"
+            >
+              <p-column header="ลำดับ" [style]="{width:'6%'}">
+                <ng-template let-rowIndex="rowIndex" pTemplate="rowexpansion">
+                  {{rowIndex+1}}
+                </ng-template>
+              </p-column>
+              <p-column field="name" header="คีย์เวิร์ด" [style]="{width:'30%'}"></p-column>
+              <p-column field="key" header="คำที่เกี่ยวข้อง"></p-column>
+            </p-dataTable>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </div>
+</div>
