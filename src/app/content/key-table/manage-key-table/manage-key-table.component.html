@@ -33,5 +33,6 @@
         <div class="alert alert-warning" role="alert" [ngbCollapse]="isCollapsed">
           <strong>คำเตือน!</strong> กรุณากรอกข้อมูลให้ครบถ้วน
         </div>
-        <button class="btn btn-primary" type="submit" >เพิ่ม</button>
+        <button class="btn btn-primary" type="submit"  [ngbCollapse]="!isAdd">เพิ่ม</button>
+        <button class="btn btn-warning" type="submit"  [ngbCollapse]="isAdd">แก้ไข</button>
 </form>

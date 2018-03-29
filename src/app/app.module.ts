@@ -22,6 +22,7 @@ import { CardModule } from 'primeng/card';
 import { MatchingComponent } from './matching/matching.component';
 import { MatchEditComponent } from './matching/match-edit/match-edit.component';
 import { MatchingService } from './matching/matching.service';
+import { KeyTableService } from './content/key-table/key-table.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { MatchingService } from './matching/matching.service';
     ButtonModule,
     CardModule,
   ],
-  providers: [AppService, ContentService, MatchingService],
+  providers: [AppService, ContentService, MatchingService, KeyTableService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

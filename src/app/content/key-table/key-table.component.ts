@@ -9,7 +9,7 @@ import { ManageKeyTableComponent } from './manage-key-table/manage-key-table.com
   selector: 'app-key-table',
   templateUrl: './key-table.component.html',
   styleUrls: ['./key-table.component.css'],
-  providers: [ContentService, KeyTableService],
+  providers: [ContentService],
 })
 export class KeyTableComponent implements OnInit {
 
@@ -26,6 +26,7 @@ export class KeyTableComponent implements OnInit {
     this.ctService.getTable().then(
       (data) => {
         this.tableData = data;
+        console.log(data);
       }
     );
   }
@@ -37,10 +38,23 @@ export class KeyTableComponent implements OnInit {
     });
   }
 
+  openEdit(id: number) {
+    this.kTService.setValueToEdit(id, this.tableData);
+    const dialogRef = this.dialog.open(ManageKeyTableComponent, {
+      height: '600px',
+      width: '80%',
+    });
+  }
+
   onDelete(number: number) {
-    console.log(number);
+    console.log(this.tableData[number].id);
+    this.kTService.onDelete(this.tableData[number].id);
     this.tableData.splice(number, 1);
-    console.log(this.tableData);
+    this.refresh();
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }
 

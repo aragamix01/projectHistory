@@ -29,7 +29,12 @@
                       class="ui-button-danger"
                       (click)="onDelete(rowIndex)"
                       ></button>
-                    <button pButton type="button" icon="fa-pencil" class="ui-button-warning"></button>
+                    <button pButton 
+                      type="button" 
+                      icon="fa-pencil" 
+                      class="ui-button-warning"
+                      (click)="openEdit(rowIndex)"
+                      ></button>
                   </div>
                 </ng-template>
               </p-column>

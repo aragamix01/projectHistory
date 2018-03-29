@@ -7,23 +7,12 @@ import 'rxjs/add/operator/map';
 export class ContentService {
     constructor(private http: Http) {}
 
-    url = 'http://localhost/project/code/code/keywordTable.php?get=getKeywordTable';
+    url = 'http://localhost/project/code/code/keywordTable.php';
     getTable() {
         return this.http.get(this.url)
             .map(res => res.json())
             .map(items => {
                 return items;
             }).toPromise();
-    }
-
-    getTable2(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.http.get(this.url)
-                .subscribe(
-                    (res: Response) => {
-                        resolve(res.json());
-                    }
-                );
-        });
     }
 }
