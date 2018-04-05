@@ -14,13 +14,16 @@ export class ResultComponent implements OnInit {
   listOfKeywords = [];
   listOfObjects = [];
   showObject = [];
+  searchKey;
 
   constructor(private appService: AppService,
               private resultService: ResultService) { }
 
   ngOnInit() {
     this.listOfKeywords = this.appService.getKeywords();
+    console.log(this.listOfKeywords);
     this.showResult();
+    this.searchKey = this.appService.getSearchWord();
   }
 
   onSearch(search) {
@@ -42,11 +45,12 @@ export class ResultComponent implements OnInit {
             object.keyword.forEach(objKeyword => {
               if (objKeyword === keyword) {
                 object.match++;
+                object.found.push(keyword);
               }
             });
           });
         });
-
+        // console.log(this.listOfObjects);
         let max = 0;
         let lengthValue = 0;
         let manageIndex = -1;
@@ -68,6 +72,8 @@ export class ResultComponent implements OnInit {
           }
         }
       }
+
+      console.log(this.showObject);
     });
   }
 }

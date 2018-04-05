@@ -11,7 +11,7 @@ const appRoutes: Routes = [
     { path: '', redirectTo: 'search', pathMatch: 'full' },
     { path: 'search', component: ContentComponent },
     { path: 'result', component: ResultComponent },
-    { path: 'table', component: KeyTableComponent },
+    { path: 'keytable', component: KeyTableComponent },
     { path: 'manage', component: ManageKeyTableComponent },
     { path: 'match', component: MatchingComponent },
     { path: 'match/edit', component: MatchEditComponent },

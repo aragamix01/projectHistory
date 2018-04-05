@@ -5,6 +5,7 @@ import { ContentService } from './content/content.service';
 export class AppService {
     tableData = [];
     libraryWord = [];
+    searchWord = '';
 
     constructor(private ctService: ContentService) {}
 
@@ -12,10 +13,15 @@ export class AppService {
         return this.libraryWord;
     }
 
+    getSearchWord() {
+        return this.searchWord;
+    }
+
     search(search): Promise<void> {
         return this.ctService.getTable().then(
                 (value) => {
                     const searchValue = search.value;
+                    this.searchWord = searchValue;
                     this.tableData = value;
                     this.libraryWord = [];
                     this.tableData.forEach((data, index) => {
@@ -43,6 +49,7 @@ export class AppService {
                             }
                         });
                     });
+                    // console.log(this.libraryWord);
                 }
             );
     }

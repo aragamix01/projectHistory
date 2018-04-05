@@ -14,3 +14,6 @@
     max-width: 200px;
     padding: 20px;
 }
+td{
+    margin-right: 20px !important;
+}
