@@ -12,6 +12,9 @@ export class MatchEditComponent implements OnInit {
 
   object;
   matchForm: FormGroup;
+  selectedText = '';
+  isOnlyOne = true;
+
   constructor(private matchingService: MatchingService,
               private router: Router,
   ) { }
@@ -60,5 +63,22 @@ export class MatchEditComponent implements OnInit {
         this.router.navigate(['match']);
       }
     );
+  }
+
+  selectTextToValue() {
+    let text = '';
+    if (window.getSelection()) {
+      text = window.getSelection().toString();
+    }
+    this.selectedText = text;
+    if (this.selectedText !== '') {
+      if (!this.isOnlyOne) {
+        const control = new FormControl(this.selectedText, Validators.required);
+        (<FormArray>this.matchForm.get('keyword')).push(control);
+      } else {
+        (<FormArray>this.matchForm.get('keyword')).get('0').setValue(this.selectedText);
+        this.isOnlyOne = false;
+      }
+    }
   }
 }
