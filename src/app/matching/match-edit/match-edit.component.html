@@ -3,8 +3,9 @@
     <div class="col-md-10">
       <div *ngIf="object">
         <h3>{{object.name}}</h3>
+        <hr>
         <div (mouseup)="selectTextToValue()"> 
-          ลักษณะ : {{object.physical}}
+          <h5> ลักษณะ : {{object.physical}} </h5> 
         </div>
         <hr>
         <form [formGroup]="matchForm" (ngSubmit)="submitForm()">

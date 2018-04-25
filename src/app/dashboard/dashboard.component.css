@@ -1,0 +1,16 @@
+.wrapper-card {
+    margin-top: 50px;
+}
+
+img {
+    max-width: 100px;
+    height: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.navigate:hover {
+    cursor: pointer;
+}

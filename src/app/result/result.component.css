@@ -1,5 +1,6 @@
 .content {
-    margin-top: 150px;
+    margin-top: 100px;
+    min-height: 500px;
 }
 
 .searchBox {
@@ -16,4 +17,14 @@
 }
 td{
     margin-right: 20px !important;
+}
+
+.footer {
+    color: white;
+    background-color: #3a3e74;
+    padding: 20px;
+}
+
+.found-word {
+    margin: 2px;
 }

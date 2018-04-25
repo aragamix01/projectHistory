@@ -23,6 +23,8 @@ import { MatchingComponent } from './matching/matching.component';
 import { MatchEditComponent } from './matching/match-edit/match-edit.component';
 import { MatchingService } from './matching/matching.service';
 import { KeyTableService } from './content/key-table/key-table.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { KeyTableService } from './content/key-table/key-table.service';
     KeyTableComponent,
     ManageKeyTableComponent,
     MatchingComponent,
-    MatchEditComponent
+    MatchEditComponent,
+    DashboardComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

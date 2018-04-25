@@ -14,6 +14,7 @@ export class ResultComponent implements OnInit {
   listOfKeywords = [];
   listOfObjects = [];
   showObject = [];
+  isLike = false;
   searchKey;
 
   constructor(private appService: AppService,
@@ -34,6 +35,7 @@ export class ResultComponent implements OnInit {
         this.showResult();
       }
     );
+    this.isLike = false;
   }
 
   showResult() {
@@ -75,5 +77,10 @@ export class ResultComponent implements OnInit {
 
       console.log(this.showObject);
     });
+  }
+
+  setLike() {
+    this.appService.setStatistic(0);
+    this.isLike = true;
   }
 }

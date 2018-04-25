@@ -6,6 +6,7 @@ import { KeyTableComponent } from './content/key-table/key-table.component';
 import { ManageKeyTableComponent } from './content/key-table/manage-key-table/manage-key-table.component';
 import { MatchingComponent } from './matching/matching.component';
 import { MatchEditComponent } from './matching/match-edit/match-edit.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'search', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     { path: 'manage', component: ManageKeyTableComponent },
     { path: 'match', component: MatchingComponent },
     { path: 'match/edit', component: MatchEditComponent },
+    { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({

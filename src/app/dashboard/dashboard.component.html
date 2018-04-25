@@ -1,0 +1,31 @@
+<div class="container-fluid fix-height">
+  <div class="row">
+    <div class="col-12">
+        <div class="card-deck wrapper-card">
+            <div *ngFor="let dash of dashboard" [class]="dash.cardStyle">
+              <div class="card-block">
+                <blockquote class="card-blockquote">
+                  <table>
+                    <tr>
+                      <td rowspan="2">
+                        <img src="./assets/images/{{ dash.image }}.png">
+                      </td>
+                      <td class="text-right">
+                        <h2>{{ dash.val }}</h2>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-right"><h5>{{ dash.desc }}</h5></td>
+                    </tr>
+                  </table>
+                </blockquote>
+              </div>
+              <div class="card-footer navigate" (click)="navigate(dash.path)">
+                ดูรายละเอียด
+                <i class="fa fa-arrow-right"></i>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -70,7 +70,7 @@ export class MatchEditComponent implements OnInit {
     if (window.getSelection()) {
       text = window.getSelection().toString();
     }
-    this.selectedText = text;
+    this.selectedText = text.trim();
     if (this.selectedText !== '') {
       if (!this.isOnlyOne) {
         const control = new FormControl(this.selectedText, Validators.required);

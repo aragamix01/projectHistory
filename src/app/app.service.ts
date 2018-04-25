@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ContentService } from './content/content.service';
+import { Http, Response } from '@angular/http';
 
 @Injectable()
 export class AppService {
@@ -7,7 +8,8 @@ export class AppService {
     libraryWord = [];
     searchWord = '';
 
-    constructor(private ctService: ContentService) {}
+    constructor(private ctService: ContentService,
+                private http: Http) {}
 
     getKeywords() {
         return this.libraryWord;
@@ -18,6 +20,7 @@ export class AppService {
     }
 
     search(search): Promise<void> {
+        this.setStatistic(1);
         return this.ctService.getTable().then(
                 (value) => {
                     const searchValue = search.value;
@@ -49,7 +52,6 @@ export class AppService {
                             }
                         });
                     });
-                    // console.log(this.libraryWord);
                 }
             );
     }
@@ -75,5 +77,11 @@ export class AppService {
             }
         });
         return libWord;
+    }
+
+    setStatistic(type) {
+        const url = 'http://localhost/project/code/code/setStatistic.php';
+        console.log(type);
+        this.http.post(url, type).subscribe();
     }
 }

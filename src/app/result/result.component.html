@@ -1,49 +1,62 @@
-<div class="container-fluid head fixed-top">
-  <div class="container">
-    <form>
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="input-group searchBox">
-            <input type="text" class="form-control" [(ngModel)]="searchKey" [ngModelOptions]="{standalone: true}" placeholder="Search.." #searchWord>
-            <span class="input-group-btn">
-              <button class="btn btn-secondary fa fa-search" (click)="onSearch(searchWord)" type="submit"></button>
-            </span>
+<div class="fix-height">
+  <div class="container-fluid head fixed-top">
+    <div class="container">
+      <form>
+        <div class="row">
+          <div class="col-xl-8">
+            <div class="input-group searchBox">
+              <input type="text" class="form-control" [(ngModel)]="searchKey" [ngModelOptions]="{standalone: true}" placeholder="Search.." #searchWord>
+              <span class="input-group-btn">
+                <button class="btn btn-secondary fa fa-search" (click)="onSearch(searchWord)" type="submit"></button>
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-
-<div class="container content">
-  <ng-container *ngIf="showObject.length > 0; else elseTemplate">
-    <table>
-      <tr>
-        <td>คีย์เวิร์ดที่พบ : </td>
-        <td *ngFor="let key of listOfKeywords">
-          <span class="badge badge-success">{{key}}</span>
-        </td>
-      </tr>
-    </table>
-    <div class="row" *ngFor="let obj of showObject">
-      <div class="col-md-10">
-        <div class="card" style="margin-top: 15px;">
-          <div class="card-block">
-            <h4 class="card-title">{{ obj.name }}</h4>
-            <img src="./assets/images/vase.png" alt="" class="rounded float-left imgShow">
-            <p class="card-text">{{ obj.desc }}</p>
-            <table>
-              <tr>
-                <td *ngFor="let found of obj.found"><span class="badge badge-success">{{found}}</span></td>
-              </tr>
-            </table>
-          </div>
-        </div>
+    <div class="container-fluid footer" *ngIf="showObject.length > 0">
+      <div class="container">
+        <br><br>
+        <tr>
+          <td>
+            <h3>ถ้าพึงพอใจในผลการค้นหาโปรดกดหัวใจ</h3>
+          </td>
+          <td>
+            <button 
+              class="btn btn-danger btn-lg fa fa-heart" 
+              style="margin-left: 10px;"
+              (click)="setLike()"
+              [disabled]="isLike"
+              ></button>
+          </td>
+        </tr>
       </div>
     </div>
-  </ng-container>
-  <ng-template #elseTemplate>
-    <h2>ไม่พบวัตถุที่ต้องการค้นหา</h2>
-    กรุณาค้นหาใหม่อีกครั้ง หรือลองค้นหา Keyword อื่น
-  </ng-template>
+  <div class="container content">
+    <ng-container *ngIf="showObject.length > 0; else elseTemplate">
+      <div class="row" style="margin-left: 10px;">
+        คีย์เวิร์ดที่พบ :
+        <span *ngFor="let key of listOfKeywords" class="badge badge-success found-word">{{key}}</span>
+      </div>
+      <div class="row" *ngFor="let obj of showObject">
+        <div class="col-md-10">
+          <div class="card" style="margin-top: 15px;">
+            <div class="card-block">
+              <h4 class="card-title">{{ obj.name }}</h4>
+              <img src="./assets/images/vase.png" alt="" class="rounded float-left imgShow">
+              <p class="card-text">{{ obj.desc }}</p>
+              <div class="row">
+                <span *ngFor="let found of obj.found" class="badge badge-success found-word">{{ found }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <h2>ไม่พบวัตถุที่ต้องการค้นหา</h2>
+      กรุณาค้นหาใหม่อีกครั้ง หรือลองค้นหา Keyword อื่น
+    </ng-template>
+  </div>
 </div>
