@@ -1,0 +1,39 @@
+.content {
+    margin-top: 100px;
+    min-height: 500px;
+}
+
+.searchBox {
+    margin-top : 30px;
+}
+.head {
+    background-color: #42A5F5;
+    height: 100px;
+}
+
+.imgShow {
+    max-width: 200px;
+    padding: 20px;
+}
+td{
+    margin-right: 20px !important;
+}
+
+.footer {
+    color: white;
+    background-color: #3a3e74;
+    padding: 20px;
+}
+
+.found-word {
+    margin: 2px;
+}
+
+.performance-box {
+    background-color: #24292e;
+    color: white;
+    padding: 50px;
+    width: 100%;
+    margin-top: 50px;
+    font-size: 18px;
+}

@@ -1,0 +1,38 @@
+<button class="btn btn-secondary fa fa-times float-right" mat-dialog-close></button>
+<h2 mat-dialog-title>เพิ่มคำที่เกี่ยวข้อง</h2>
+<form [formGroup]="keyForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="key">คีย์เวิร์ด</label>
+          <input type="text" id="key" formControlName="key" class="form-control">
+          <hr>
+        </div>
+        <div class="form-group">
+          <div formArrayName="refs">
+            <label>คำที่เกี่ยวข้อง</label>
+            <button 
+              style="margin-bottom: 15px;" 
+              class="btn btn-success fa fa-plus float-right" 
+              (click)="onAddRef()"
+              type="button"
+             ></button>
+            <div class="form-group" *ngFor="let refControl of formRefs.controls; let i = index">
+              <div class="input-group">
+                <input type="text" class="form-control" formControlName="{{i}}">
+                <span class="input-group-btn" *ngIf="i > 0">
+                  <button 
+                    class="btn btn-outline-danger fa fa-minus" 
+                    type="button"
+                    (click)="onRmRef(i)"
+                    ></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="alert alert-warning" role="alert" [ngbCollapse]="isCollapsed">
+          <strong>คำเตือน!</strong> กรุณากรอกข้อมูลให้ครบถ้วน
+        </div>
+        <button class="btn btn-primary" type="submit"  [ngbCollapse]="!isAdd">เพิ่ม</button>
+        <button class="btn btn-warning" type="submit"  [ngbCollapse]="isAdd">แก้ไข</button>
+</form>

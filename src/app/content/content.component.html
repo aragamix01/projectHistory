@@ -1,0 +1,27 @@
+<div class="container-fluid fix-height">
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-4">
+      <form>
+        <div class="row">
+          <img class="center" src="./assets/images/vase.png" alt="">
+          <div class="input-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Search.."
+              value="พระเครื่องผงฝุ่นรูปนก"
+              #searchWord
+            >
+            <span class="input-group-btn">
+              <button 
+                class="btn btn-secondary fa fa-search" 
+                type="submit"
+                (click)="onSearch(searchWord)"
+              ></button>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
