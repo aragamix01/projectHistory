@@ -9,6 +9,7 @@ export class AppService {
     searchWord = '';
     startTime;
     EndTime;
+    home_path = 'http://localhost/project/code/code/';
 
     constructor(private ctService: ContentService,
                 private http: Http) {}
@@ -38,12 +39,16 @@ export class AppService {
         return this.ctService.getTable().then(
                 (value) => {
                     this.startTime = performance.now();
-                    const searchValue = search.value;
-                    this.searchWord = searchValue;
+                    if (typeof(search) === 'string') {
+                        this.searchWord = search;
+                    } else {
+                        this.searchWord = search.value;
+                    }
+
                     this.tableData = value;
                     this.libraryWord = [];
                     this.tableData.forEach((data, index) => {
-                        if (searchValue.includes(data.key)) {
+                        if (this.searchWord.includes(data.key)) {
                             if (!this.checkDuplicate(data.key)) {
                                 this.libraryWord.push(data.key);
                             }
@@ -58,7 +63,7 @@ export class AppService {
 
                     this.tableData.forEach((innerSearch, i) => {
                         innerSearch.ref.forEach(ref => {
-                            if (searchValue.includes(ref)) {
+                            if (this.searchWord.includes(ref)) {
                                 if (!this.checkDuplicate(innerSearch.key)) {
                                     this.libraryWord.push(innerSearch.key);
                                 }

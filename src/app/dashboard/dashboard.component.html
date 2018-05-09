@@ -28,4 +28,19 @@
         </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <p-chart type="line" [data]="data"></p-chart>
+    </div>
+    <div class="col-lg-4 recent">
+      <ul class="list-group">
+        <li class="list-group-item active">คำค้นหาล่าสุด</li>
+        <li 
+          class="list-group-item canClick" 
+          *ngFor="let recent of recentSearch"
+          (click)="onSearch(recent)"
+          >{{ recent }}</li>
+      </ul>
+    </div>
+  </div>
 </div>

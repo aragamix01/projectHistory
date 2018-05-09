@@ -5,9 +5,9 @@ import { Http, Response } from '@angular/http';
 export class ResultService {
     constructor(private http: Http) { }
 
-    url = 'http://localhost/project/code/code/getObjWithKeyword.php';
     getObjects() {
-        return this.http.get(this.url)
+        const url = 'http://localhost/project/code/code/getObjWithKeyword.php';
+        return this.http.get(url)
             .map(res => res.json())
             .map(items => {
                 return items;

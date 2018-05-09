@@ -14,3 +14,13 @@ table {
 .navigate:hover {
     cursor: pointer;
 }
+
+.recent {
+    margin-top: 20px;
+}
+
+.canClick:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #0275d8;
+}
