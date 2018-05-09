@@ -28,3 +28,12 @@ td{
 .found-word {
     margin: 2px;
 }
+
+.performance-box {
+    background-color: #24292e;
+    color: white;
+    padding: 50px;
+    width: 100%;
+    margin-top: 50px;
+    font-size: 18px;
+}

@@ -7,6 +7,8 @@ export class AppService {
     tableData = [];
     libraryWord = [];
     searchWord = '';
+    startTime;
+    EndTime;
 
     constructor(private ctService: ContentService,
                 private http: Http) {}
@@ -19,10 +21,23 @@ export class AppService {
         return this.searchWord;
     }
 
+    setEndTime(endTime) {
+        this.EndTime = endTime;
+    }
+
+    getEndTime() {
+        return this.EndTime;
+    }
+
+    getStartTime() {
+        return this.startTime;
+    }
+
     search(search): Promise<void> {
         this.setStatistic(1);
         return this.ctService.getTable().then(
                 (value) => {
+                    this.startTime = performance.now();
                     const searchValue = search.value;
                     this.searchWord = searchValue;
                     this.tableData = value;

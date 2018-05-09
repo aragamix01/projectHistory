@@ -35,10 +35,6 @@
     </div>
   <div class="container content">
     <ng-container *ngIf="showObject.length > 0; else elseTemplate">
-      <div class="row" style="margin-left: 10px;">
-        คีย์เวิร์ดที่พบ :
-        <span *ngFor="let key of listOfKeywords" class="badge badge-success found-word">{{key}}</span>
-      </div>
       <div class="row" *ngFor="let obj of showObject">
         <div class="col-md-10">
           <div class="card" style="margin-top: 15px;">
@@ -58,5 +54,14 @@
       <h2>ไม่พบวัตถุที่ต้องการค้นหา</h2>
       กรุณาค้นหาใหม่อีกครั้ง หรือลองค้นหา Keyword อื่น
     </ng-template>
+  </div>
+</div>
+<div class="container-fluid performance-box" *ngIf="showObject.length > 0">
+  <div class="row" style="margin-left: 10px;">
+    คีย์เวิร์ดที่พบ :
+    <span *ngFor="let key of listOfKeywords" class="badge-pill badge-success found-word">{{key}}</span>
+  </div>
+  <div class="row" style="margin-left: 10px;">
+    ใช้เวลาในการค้นหา : {{ usedTime }} มิลลิวินาที.
   </div>
 </div>

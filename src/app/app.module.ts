@@ -24,7 +24,6 @@ import { MatchEditComponent } from './matching/match-edit/match-edit.component';
 import { MatchingService } from './matching/matching.service';
 import { KeyTableService } from './content/key-table/key-table.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { FooterComponent } from './footer/footer.component';
     MatchingComponent,
     MatchEditComponent,
     DashboardComponent,
-    FooterComponent
   ],
   imports: [
     BrowserModule,

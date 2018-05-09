@@ -16,13 +16,13 @@ export class ResultComponent implements OnInit {
   showObject = [];
   isLike = false;
   searchKey;
+  usedTime;
 
   constructor(private appService: AppService,
               private resultService: ResultService) { }
 
   ngOnInit() {
     this.listOfKeywords = this.appService.getKeywords();
-    console.log(this.listOfKeywords);
     this.showResult();
     this.searchKey = this.appService.getSearchWord();
   }
@@ -41,7 +41,8 @@ export class ResultComponent implements OnInit {
   showResult() {
     this.resultService.getObjects().then((data) => {
       this.listOfObjects = data;
-      if (this.listOfObjects.length > 0) {
+      console.log(this.listOfObjects.length);
+      if (this.listOfObjects.length > 0 && this.listOfKeywords.length !== 0) {
         this.listOfObjects.forEach(object => {
           this.listOfKeywords.forEach(keyword => {
             object.keyword.forEach(objKeyword => {
@@ -52,7 +53,6 @@ export class ResultComponent implements OnInit {
             });
           });
         });
-        // console.log(this.listOfObjects);
         let max = 0;
         let lengthValue = 0;
         let manageIndex = -1;
@@ -73,9 +73,16 @@ export class ResultComponent implements OnInit {
             this.listOfObjects.splice(manageIndex, 1);
           }
         }
+        this.appService.setEndTime(performance.now());
+        this.usedTime = (this.appService.getEndTime() - this.appService.getStartTime()).toFixed(0);
+        if (this.usedTime != null) {
+          this.resultService.setSearchStatistics(
+            this.appService.getSearchWord(),
+            this.usedTime,
+            this.showObject.length,
+          );
+        }
       }
-
-      console.log(this.showObject);
     });
   }
 
