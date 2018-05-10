@@ -45,6 +45,7 @@ export class MatchEditComponent implements OnInit {
         const control = new FormControl(key, Validators.required);
         (<FormArray>this.matchForm.get('keyword')).push(control);
       });
+      this.isOnlyOne = false;
     } else {
       const control = new FormControl(null, Validators.required);
       (<FormArray>this.matchForm.get('keyword')).push(control);

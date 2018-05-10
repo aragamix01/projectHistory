@@ -1,15 +1,17 @@
-
-<div class="container" style="margin-top: 60px">
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-5">{{object.name}}</h1>
+    <div ngbTooltip="คลุมดำเพื่อเพิ่มคีย์เวิร์ด">
+      <p> ลักษณะ :
+        <span (mouseup)="selectTextToValue()"> {{object.physical}} </span>
+      </p>
+    </div>
+  </div>
+</div>
+<div class="container">
   <div class="row">
     <div class="col-md-10">
       <div *ngIf="object">
-        <h3>{{object.name}}</h3>
-        <hr>
-        <div ngbTooltip="คลุมดำเพื่อเพิ่มคีย์เวิร์ด"> 
-          <h5> ลักษณะ : <span  (mouseup)="selectTextToValue()"> {{object.physical}} </span> </h5> 
-        </div>
-        <hr>
-        
         <ng-container *ngIf="!isCollapse; else elseTemplate">
           <button 
           class="btn btn-primary fa fa-plus" 

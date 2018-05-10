@@ -12,7 +12,7 @@ input:focus {
 }
 
 .img-show{
-  width: 700px;
+  width: 80%;
   height: auto;
   margin: 30px;
 }
@@ -21,4 +21,15 @@ img {
   width: 100%;
   height: 100%;
 }
+.header {
+  color: white;
+  background-color: #24292e;
+  padding: 30px;
+}
+
+p {
+  font-size: 18px;
+}
+
+
 
