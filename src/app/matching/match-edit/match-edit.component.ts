@@ -18,6 +18,7 @@ export class MatchEditComponent implements OnInit {
   pics;
   pic_path = globals.pic_path;
   folder_path = '';
+  isCollapse = true;
 
   constructor(private matchingService: MatchingService,
               private router: Router,

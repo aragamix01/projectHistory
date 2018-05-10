@@ -9,23 +9,36 @@
           <h5> ลักษณะ : <span  (mouseup)="selectTextToValue()"> {{object.physical}} </span> </h5> 
         </div>
         <hr>
-        <!-- <img 
-          src="http://localhost/project_mu/musetest/pic/bigmuse/TP2559-0047/2017-09-15_15-11-18_IMG_1675.JPG" 
-          style="width: 500px; height: auto; max-width: 100%;" 
-          alt="Random first slide"
-          > -->
-        <ngb-carousel *ngIf="pics" class="img-show">
-          <ng-template ngbSlide *ngFor="let pic of pics">
-            <img 
-              src="{{ pic_path + folder_path + '/' + pic.pic_name }}"
-              alt="Random first slide"
-              >
-            <div class="carousel-caption">
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-            </div>
-          </ng-template>
-        </ngb-carousel>
+        
+        <ng-container *ngIf="!isCollapse; else elseTemplate">
+          <button 
+          class="btn btn-primary fa fa-plus" 
+          (click)="isCollapse = !isCollapse"
+          ngbTooltip="แสดงรูปภาพ"
+          > แสดงรูปภาพ</button>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <button 
+          class="btn btn-primary fa fa-minus" 
+          (click)="isCollapse = !isCollapse"
+          ngbTooltip="ซ่อนรูปภาพ"
+          > ซ่อนรูปภาพ</button>
+        </ng-template>
+        
+        <div [ngbCollapse]="!isCollapse">
+          <ngb-carousel *ngIf="pics" class="img-show">
+            <ng-template ngbSlide *ngFor="let pic of pics">
+              <img 
+                src="{{ pic_path + folder_path + '/' + pic.pic_name }}"
+                alt="Random first slide"
+                >
+              <div class="carousel-caption">
+                <h3>ภาพของ {{object.name}}</h3>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+        </div>
+        <hr>
         <form [formGroup]="matchForm" (ngSubmit)="submitForm()">
           <div class="form-group">
             <div formArrayName="keyword">

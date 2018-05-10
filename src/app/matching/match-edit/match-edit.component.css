@@ -14,6 +14,7 @@ input:focus {
 .img-show{
   width: 700px;
   height: auto;
+  margin: 30px;
 }
 
 img {
