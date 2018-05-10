@@ -28,12 +28,14 @@
                       type="button" icon="fa-trash" 
                       class="ui-button-danger"
                       (click)="onDelete(rowIndex)"
+                      ngbTooltip="ลบคำที่เกี่ยวข้อง"
                       ></button>
                     <button pButton 
                       type="button" 
                       icon="fa-pencil" 
                       class="ui-button-warning"
                       (click)="openEdit(rowIndex)"
+                      ngbTooltip="แก้ไขที่เกี่ยวข้อง"
                       ></button>
                   </div>
                 </ng-template>

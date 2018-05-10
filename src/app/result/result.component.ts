@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { ResultService } from './result.service';
+import * as globals from '../globals';
 
 @Component({
   selector: 'app-result',
@@ -17,6 +18,7 @@ export class ResultComponent implements OnInit {
   isLike = false;
   searchKey;
   usedTime;
+  pic_path = globals.pic_path;
 
   constructor(private appService: AppService,
               private resultService: ResultService) { }
@@ -82,6 +84,7 @@ export class ResultComponent implements OnInit {
             this.showObject.length,
           );
         }
+        console.log(this.showObject);
       }
     });
   }

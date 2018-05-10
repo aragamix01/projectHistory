@@ -1,13 +1,31 @@
+
 <div class="container" style="margin-top: 60px">
   <div class="row">
     <div class="col-md-10">
       <div *ngIf="object">
         <h3>{{object.name}}</h3>
         <hr>
-        <div (mouseup)="selectTextToValue()"> 
-          <h5> ลักษณะ : {{object.physical}} </h5> 
+        <div ngbTooltip="คลุมดำเพื่อเพิ่มคีย์เวิร์ด"> 
+          <h5> ลักษณะ : <span  (mouseup)="selectTextToValue()"> {{object.physical}} </span> </h5> 
         </div>
         <hr>
+        <!-- <img 
+          src="http://localhost/project_mu/musetest/pic/bigmuse/TP2559-0047/2017-09-15_15-11-18_IMG_1675.JPG" 
+          style="width: 500px; height: auto; max-width: 100%;" 
+          alt="Random first slide"
+          > -->
+        <ngb-carousel *ngIf="pics" class="img-show">
+          <ng-template ngbSlide *ngFor="let pic of pics">
+            <img 
+              src="{{ pic_path + folder_path + '/' + pic.pic_name }}"
+              alt="Random first slide"
+              >
+            <div class="carousel-caption">
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </div>
+          </ng-template>
+        </ngb-carousel>
         <form [formGroup]="matchForm" (ngSubmit)="submitForm()">
           <div class="form-group">
             <div formArrayName="keyword">
@@ -17,6 +35,7 @@
                 class="btn btn-success fa fa-plus float-right" 
                 (click)="onAddKeyword()" 
                 type="button"
+                ngbTooltip="เพิ่มคีย์เวิร์ด"
                 ></button>
               <div class="form-group" *ngFor="let refControl of formKeyword.controls; let i = index">
                 <div class="input-group">
@@ -25,7 +44,9 @@
                     <button 
                       class="btn btn-outline-danger fa fa-minus" 
                       type="button" 
-                      (click)="onRmKeyword(i)"></button>
+                      (click)="onRmKeyword(i)"
+                      ngbTooltip="ลบคีย์เวิร์ด"
+                      ></button>
                   </span>
                 </div>
               </div>
@@ -35,6 +56,7 @@
               type="submit" 
               class="btn btn-success" 
               [disabled]="!matchForm.valid"
+              ngbTooltip="จับคู่"
               >Matching</button>
         </form>
       </div>

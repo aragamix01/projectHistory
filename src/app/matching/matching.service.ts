@@ -30,6 +30,21 @@ export class MatchingService {
         ).toPromise();
     }
 
+    getPics(data) {
+        const url = globals.home_path + 'getPic.php';
+        data = {
+            'folder': data,
+        };
+        return this.http.post(url, data).map(
+            (res: Response) => {
+                return res.json();
+            },
+            (error) => {
+                console.log('error');
+            }
+        ).toPromise();
+    }
+
     setDataObject(data) {
         this.dataObject = data;
     }
