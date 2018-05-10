@@ -87,7 +87,6 @@ export class DashboardComponent implements OnInit {
         this.dashboard[3].val = data.CountLove;
       }
     );
-    console.log(typeof(this.dashboard) === 'string');
   }
 
   navigate(path) {
@@ -95,7 +94,6 @@ export class DashboardComponent implements OnInit {
   }
 
   onSearch(search) {
-    // console.log(search);
     this.appService.search(search).then(
       () => {
         this.router.navigate(['result']);

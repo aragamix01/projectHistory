@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import * as globals from '../globals';
 
 @Injectable()
 export class ResultService {
     constructor(private http: Http) { }
 
     getObjects() {
-        const url = 'http://localhost/project/code/code/getObjWithKeyword.php';
+        const url = globals.home_path + 'getObjWithKeyword.php';
         return this.http.get(url)
             .map(res => res.json())
             .map(items => {
@@ -15,13 +16,12 @@ export class ResultService {
     }
 
     setSearchStatistics(searchWord, takeTime, foundObject) {
-        const url = 'http://localhost/project/code/code/setStatistic_detail.php';
+        const url = globals.home_path + 'setStatistic_detail.php';
         const data = {
             searchWord: searchWord,
             takeTime: takeTime,
             foundObject: foundObject,
         };
-        console.log(data);
         return this.http.post(url, data).map(
             (res: Response) => {
                 console.log(res);

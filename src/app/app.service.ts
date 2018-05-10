@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ContentService } from './content/content.service';
 import { Http, Response } from '@angular/http';
+import * as globals from './globals';
+
 
 @Injectable()
 export class AppService {
@@ -9,7 +11,6 @@ export class AppService {
     searchWord = '';
     startTime;
     EndTime;
-    home_path = 'http://localhost/project/code/code/';
 
     constructor(private ctService: ContentService,
                 private http: Http) {}
@@ -100,8 +101,7 @@ export class AppService {
     }
 
     setStatistic(type) {
-        const url = 'http://localhost/project/code/code/setStatistic.php';
-        console.log(type);
+        const url = globals.home_path + 'setStatistic.php';
         this.http.post(url, type).subscribe();
     }
 }

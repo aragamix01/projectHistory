@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
+import * as globals from '../../globals';
 
 @Injectable()
 export class KeyTableService {
@@ -9,7 +10,7 @@ export class KeyTableService {
     constructor(private http: Http) {}
 
     onInsert(data: any) {
-        const url = 'http://localhost/project/code/code/insertKeyTable.php';
+        const url = globals.home_path + 'insertKeyTable.php';
         return this.http.post(url, data).map(
             (res: Response) => {
                 console.log(res);
@@ -21,7 +22,7 @@ export class KeyTableService {
     }
 
     onDelete(id: number) {
-        const url = 'http://localhost/project/code/code/deleteKeyTable.php';
+        const url = globals.home_path + 'deleteKeyTable.php';
         return this.http.post(url, id).map(
             (res: Response) => {
                 console.log(res);

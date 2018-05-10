@@ -26,7 +26,6 @@ export class KeyTableComponent implements OnInit {
     this.ctService.getTable().then(
       (data) => {
         this.tableData = data;
-        console.log(data);
       }
     );
   }
@@ -47,7 +46,6 @@ export class KeyTableComponent implements OnInit {
   }
 
   onDelete(number: number) {
-    console.log(this.tableData[number].id);
     this.kTService.onDelete(this.tableData[number].id);
     this.tableData.splice(number, 1);
     this.refresh();
