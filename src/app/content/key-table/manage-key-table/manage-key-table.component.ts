@@ -22,7 +22,6 @@ export class ManageKeyTableComponent implements OnInit {
   ngOnInit() {
     if (this.ktService.getValueToEdit() != null) {
       this.newFormWithData(this.ktService.getValueToEdit());
-      console.log(this.ktService.getValueToEdit());
       this.ktService.setValueToEdit(null, []);
     } else {
       this.newForm();
@@ -53,7 +52,6 @@ export class ManageKeyTableComponent implements OnInit {
   onSubmit() {
     if (this.keyForm.valid === true) {
       if (this.isAdd) {
-        console.log(this.keyForm);
         this.ktService.onInsert(this.keyForm.value).then(
           () => { this.refresh(); }
         );

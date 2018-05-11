@@ -2,10 +2,13 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" routerLink="/search">Home</a>
+  <a class="navbar-brand fa fa-home" routerLink="/search"></a>
   <div class="collapse navbar-collapse" [ngbCollapse]="!isCollapsed">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" routerLink="/dashboard">dashboard</a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/search">ค้นหา</a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/dashboard">แดชบอร์ด</a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/match">จับคู่</a>
+      <a class="nav-item nav-link" routerLinkActive="active" routerLink="/keytable">ตารางความสัมพันธ์</a>
     </div>
   </div>
 </nav>

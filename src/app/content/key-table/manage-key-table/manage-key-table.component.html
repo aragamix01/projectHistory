@@ -1,4 +1,4 @@
-<button class="btn btn-secondary fa fa-times float-right" mat-dialog-close></button>
+<button class="btn btn-secondary fa fa-times float-right" ngbTooltip="ปิด" mat-dialog-close></button>
 <h2 mat-dialog-title>เพิ่มคำที่เกี่ยวข้อง</h2>
 <form [formGroup]="keyForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
@@ -14,6 +14,7 @@
               class="btn btn-success fa fa-plus float-right" 
               (click)="onAddRef()"
               type="button"
+              ngbTooltip="เพิ่มคีย์เวิร์ด"
              ></button>
             <div class="form-group" *ngFor="let refControl of formRefs.controls; let i = index">
               <div class="input-group">
@@ -23,6 +24,7 @@
                     class="btn btn-outline-danger fa fa-minus" 
                     type="button"
                     (click)="onRmRef(i)"
+                    ngbTooltip="ลบคีย์เวิร์ด"
                     ></button>
                 </span>
               </div>
@@ -33,6 +35,6 @@
         <div class="alert alert-warning" role="alert" [ngbCollapse]="isCollapsed">
           <strong>คำเตือน!</strong> กรุณากรอกข้อมูลให้ครบถ้วน
         </div>
-        <button class="btn btn-primary" type="submit"  [ngbCollapse]="!isAdd">เพิ่ม</button>
-        <button class="btn btn-warning" type="submit"  [ngbCollapse]="isAdd">แก้ไข</button>
+        <button class="btn btn-primary" type="submit" ngbTooltip="เพิ่มความสัมพันธ์" [ngbCollapse]="!isAdd">เพิ่ม</button>
+        <button class="btn btn-warning" type="submit" ngbTooltip="แก้ไขเสร็จสิ้น"  [ngbCollapse]="isAdd">แก้ไข</button>
 </form>

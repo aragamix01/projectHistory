@@ -9,7 +9,7 @@
               (click)="openDialog()"
               placement="top" ngbTooltip="เพิ่มคำที่เกี่ยวข้อง"
               >  เพิ่ม</button>
-            <h4>ตารางคำที่เกี่ยวข้อง</h4>
+            <h4>ตารางความสัมพันธ์ของคีย์เวิร์ด </h4>
             <hr>
             <p-dataTable [value]="tableData" [rows]="5" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" 
               [immutable]=false
@@ -28,12 +28,14 @@
                       type="button" icon="fa-trash" 
                       class="ui-button-danger"
                       (click)="onDelete(rowIndex)"
+                      ngbTooltip="ลบคำที่เกี่ยวข้อง"
                       ></button>
                     <button pButton 
                       type="button" 
                       icon="fa-pencil" 
                       class="ui-button-warning"
                       (click)="openEdit(rowIndex)"
+                      ngbTooltip="แก้ไขที่เกี่ยวข้อง"
                       ></button>
                   </div>
                 </ng-template>

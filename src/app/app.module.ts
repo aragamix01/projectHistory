@@ -24,6 +24,7 @@ import { MatchEditComponent } from './matching/match-edit/match-edit.component';
 import { MatchingService } from './matching/matching.service';
 import { KeyTableService } from './content/key-table/key-table.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     PaginatorModule,
     ButtonModule,
     CardModule,
+    ChartModule,
   ],
   providers: [AppService, ContentService, MatchingService, KeyTableService],
   bootstrap: [AppComponent]

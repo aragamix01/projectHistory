@@ -40,7 +40,7 @@
           <div class="card" style="margin-top: 15px;">
             <div class="card-block">
               <h4 class="card-title">{{ obj.name }}</h4>
-              <img src="./assets/images/vase.png" alt="" class="rounded float-left imgShow">
+              <img src="{{pic_path + obj.folder + '/' + obj.pic}}" alt="" class="rounded float-left imgShow">
               <p class="card-text">{{ obj.desc }}</p>
               <div class="row">
                 <span *ngFor="let found of obj.found" class="badge badge-success found-word">{{ found }}</span>

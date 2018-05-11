@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatchingService } from '../matching.service';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as globals from '../../globals';
 
 @Component({
   selector: 'app-match-edit',
@@ -14,6 +15,10 @@ export class MatchEditComponent implements OnInit {
   matchForm: FormGroup;
   selectedText = '';
   isOnlyOne = true;
+  pics;
+  pic_path = globals.pic_path;
+  folder_path = '';
+  isCollapse = true;
 
   constructor(private matchingService: MatchingService,
               private router: Router,
@@ -21,7 +26,13 @@ export class MatchEditComponent implements OnInit {
 
   ngOnInit() {
     this.object = this.matchingService.getDataObject();
+    this.folder_path = this.object.folder;
     this.newForm();
+    this.matchingService.getPics(this.folder_path).then(
+      (data) => {
+        this.pics = data;
+      }
+    );
   }
 
   newForm() {
@@ -34,6 +45,7 @@ export class MatchEditComponent implements OnInit {
         const control = new FormControl(key, Validators.required);
         (<FormArray>this.matchForm.get('keyword')).push(control);
       });
+      this.isOnlyOne = false;
     } else {
       const control = new FormControl(null, Validators.required);
       (<FormArray>this.matchForm.get('keyword')).push(control);
