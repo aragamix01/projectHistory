@@ -35,69 +35,59 @@ export class AppService {
         return this.startTime;
     }
 
-    search(search): Promise<void> {
-        this.setStatistic(1);
+    onSearch(listOfWord: string[]): Promise<void> {
         return this.ctService.getTable().then(
-                (value) => {
-                    this.startTime = performance.now();
-                    if (typeof(search) === 'string') {
-                        this.searchWord = search;
-                    } else {
-                        this.searchWord = search.value;
-                    }
-
-                    this.tableData = value;
-                    this.libraryWord = [];
-                    this.tableData.forEach((data, index) => {
-                        if (this.searchWord.includes(data.key)) {
-                            if (!this.checkDuplicate(data.key)) {
-                                this.libraryWord.push(data.key);
-                            }
-                            data.ref.forEach(element => {
-                                if (!this.checkDuplicate(element)) {
-                                    this.libraryWord.push(element);
-                                }
-                            });
-                            this.tableData.splice(index, 1);
+            (value) => {
+                this.startTime = performance.now();
+                this.libraryWord = [];
+                this.tableData = value;
+                this.searchWord = listOfWord.join(' ');
+                this.tableData.forEach((keyword, index) => {
+                    if (listOfWord.includes(keyword.key)) {
+                        if (!this.libraryWord.includes(keyword.key)) {
+                            this.libraryWord.push(keyword.key);
                         }
-                    });
-
-                    this.tableData.forEach((innerSearch, i) => {
-                        innerSearch.ref.forEach(ref => {
-                            if (this.searchWord.includes(ref)) {
-                                if (!this.checkDuplicate(innerSearch.key)) {
-                                    this.libraryWord.push(innerSearch.key);
-                                }
-                                this.libraryWord = this.reverseInsert(innerSearch.key, this.libraryWord);
-                                this.tableData.splice(i, 1);
+                        keyword.ref.forEach(refKey => {
+                            if (!this.libraryWord.includes(refKey)) {
+                                this.libraryWord.push(refKey);
                             }
                         });
-                    });
-                }
-            );
-    }
+                        // this.tableData.splice(index, 1);
+                    }
+                });
 
-    checkDuplicate(word: string) {
-        let check = false;
-        this.libraryWord.forEach(element => {
-            if (element === word) {
-                check = true;
+                this.tableData.forEach((innerSearch, i) => {
+                    innerSearch.ref.forEach(innerRef => {
+                        if (listOfWord.includes(innerRef)) {
+                            if (!this.libraryWord.includes(innerSearch.key)) {
+                                this.libraryWord.push(innerSearch.key);
+                            }
+                            this.libraryWord = this.reverseInsert(innerSearch.key, this.libraryWord);
+                            // this.tableData.splice(i, 1);
+                        }
+                    });
+                });
+                // console.log(this.libraryWord);
             }
-        });
-        return check;
+        );
     }
 
     reverseInsert(key: string, libWord: string[]) {
         this.tableData.forEach(element => {
             if (element.key === key) {
                 element.ref.forEach(ref => {
-                    if (!this.checkDuplicate(ref)) {
+                    if (!this.libraryWord.includes(ref)) {
                         libWord.push(ref);
                     }
                 });
             }
         });
         return libWord;
+    }
+
+    splitWord(word: string) {
+        const listOfWord = word.split(' ');
+        return listOfWord;
     }
 
     setStatistic(type) {

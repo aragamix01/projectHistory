@@ -93,12 +93,9 @@ export class DashboardComponent implements OnInit {
     this.route.navigate([path]);
   }
 
-  onSearch(search) {
-    this.appService.search(search).then(
-      () => {
-        this.router.navigate(['result']);
-      }
-    );
+  async onSearch(search) {
+    await this.appService.onSearch(this.appService.splitWord(search));
+    this.router.navigate(['result']);
   }
 
 }

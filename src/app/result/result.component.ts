@@ -1,7 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { ResultService } from './result.service';
 import * as globals from '../globals';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @Component({
   selector: 'app-result',
@@ -10,7 +16,7 @@ import * as globals from '../globals';
   providers: [ResultService]
 })
 
-export class ResultComponent implements OnInit {
+export class ResultComponent implements OnInit, AfterViewInit {
 
   listOfKeywords = [];
   listOfObjects = [];
@@ -29,21 +35,34 @@ export class ResultComponent implements OnInit {
     this.searchKey = this.appService.getSearchWord();
   }
 
-  onSearch(search) {
-    this.appService.search(search).then(
-      () => {
-        this.listOfKeywords = this.appService.getKeywords();
-        this.showObject = [];
-        this.showResult();
+  ngAfterViewInit() {
+    Observable
+    .fromEvent(document.getElementById('input'), 'keyup')
+    .debounceTime(1000)
+    .distinctUntilChanged()
+    .subscribe(
+      (val: any) => {
+        console.log(val.target.value);
+        this.onSearch(val.target.value);
       }
     );
+  }
+
+  async onSearch(search) {
+    if (typeof(search) === 'string') {
+      await this.appService.onSearch(this.appService.splitWord(search));
+    } else {
+      await this.appService.onSearch(this.appService.splitWord(search.value));
+    }
+    this.listOfKeywords = this.appService.getKeywords();
+    this.showResult();
     this.isLike = false;
   }
 
   showResult() {
+    this.showObject = [];
     this.resultService.getObjects().then((data) => {
       this.listOfObjects = data;
-      console.log(this.listOfObjects.length);
       if (this.listOfObjects.length > 0 && this.listOfKeywords.length !== 0) {
         this.listOfObjects.forEach(object => {
           this.listOfKeywords.forEach(keyword => {
@@ -84,7 +103,6 @@ export class ResultComponent implements OnInit {
             this.showObject.length,
           );
         }
-        console.log(this.showObject);
       }
     });
   }

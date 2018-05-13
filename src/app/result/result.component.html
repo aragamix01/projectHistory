@@ -3,9 +3,21 @@
     <div class="container">
       <form>
         <div class="row">
+          
           <div class="col-xl-8">
             <div class="input-group searchBox">
-              <input type="text" class="form-control" [(ngModel)]="searchKey" [ngModelOptions]="{standalone: true}" placeholder="Search.." #searchWord>
+              <span class="input-group-addon" id="basic-addon1">
+                <span class="fa fa-info-circle" placement="bottom" ngbTooltip="ขั้นระหว่างคีย์เวิร์ดด้วยช่องว่าง เช่น 'นก พระเครื่อง สามเหลี่ยม'"></span>
+              </span>
+              <input 
+                type="text" 
+                class="form-control" 
+                [(ngModel)]="searchKey" 
+                [ngModelOptions]="{standalone: true}" 
+                placeholder="กรอกข้อมูลเช่น 'นก พระเครื่อง สามเหลี่ยม'" 
+                #searchWord
+                id="input"
+                >
               <span class="input-group-btn">
                 <button class="btn btn-secondary fa fa-search" (click)="onSearch(searchWord)" type="submit"></button>
               </span>

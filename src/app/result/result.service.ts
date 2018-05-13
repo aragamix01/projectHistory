@@ -24,7 +24,7 @@ export class ResultService {
         };
         return this.http.post(url, data).map(
             (res: Response) => {
-                console.log(res);
+                //
             },
             (error) => {
                 console.log('error');
