@@ -27,7 +27,7 @@
                     <button pButton 
                       type="button" icon="fa-trash" 
                       class="ui-button-danger"
-                      (click)="onDelete(rowIndex)"
+                      (click)="open(content, rowIndex)"
                       ngbTooltip="ลบคำที่เกี่ยวข้อง"
                       ></button>
                     <button pButton 
@@ -48,3 +48,19 @@
     </div>
   </div>
 </div>
+<ng-template #content let-ca="close('a')" let-cb="close('c')" let-a="confirm" let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">ยืนยัน</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>ต้องการลบข้อมูลที่เลือก?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="ca">ลบ</button>
+    <button type="button" class="btn btn-outline-dark float-right" (click)="cb">ปิด</button>
+  </div>
+</ng-template>
+

@@ -4,6 +4,7 @@ import { Http, Response } from '@angular/http';
 import { KeyTableService } from './key-table.service';
 import { MatDialog } from '@angular/material';
 import { ManageKeyTableComponent } from './manage-key-table/manage-key-table.component';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-key-table',
@@ -20,6 +21,7 @@ export class KeyTableComponent implements OnInit {
               private kTService: KeyTableService,
               private http: Http,
               public dialog: MatDialog,
+              private modalService: NgbModal,
             ) { }
 
   ngOnInit() {
@@ -28,6 +30,15 @@ export class KeyTableComponent implements OnInit {
         this.tableData = data;
       }
     );
+  }
+
+  open(content, index) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = result;
+      if (this.closeResult === 'a') {
+        this.onDelete(index);
+      }
+    });
   }
 
   openDialog() {
