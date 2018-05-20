@@ -26,8 +26,6 @@ export class ContentComponent implements OnInit, AfterViewInit {
   libraryWord = [];
 
   ngOnInit() {
-    // this.libraryWord.push('พระเครื่อง');
-    // this.libraryWord.push('นก');
   }
 
   onSearch(search) {
@@ -57,7 +55,6 @@ export class ContentComponent implements OnInit, AfterViewInit {
   }
 
   onDelete(index) {
-    console.log(index);
     this.libraryWord.splice(index, 1);
   }
 }

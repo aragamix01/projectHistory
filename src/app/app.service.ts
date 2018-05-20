@@ -67,7 +67,7 @@ export class AppService {
                         }
                     });
                 });
-                // console.log(this.libraryWord);
+                console.log(this.libraryWord);
             }
         );
     }

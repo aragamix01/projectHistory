@@ -21,6 +21,7 @@ export class ResultComponent implements OnInit, AfterViewInit {
   listOfKeywords = [];
   listOfObjects = [];
   showObject = [];
+  listOfSearchWords = [];
   isLike = false;
   searchKey;
   usedTime;
@@ -32,7 +33,6 @@ export class ResultComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.listOfKeywords = this.appService.getKeywords();
     this.showResult();
-    this.searchKey = this.appService.getSearchWord();
   }
 
   ngAfterViewInit() {
@@ -41,22 +41,22 @@ export class ResultComponent implements OnInit, AfterViewInit {
     .debounceTime(1000)
     .distinctUntilChanged()
     .subscribe(
-      (val: any) => {
-        console.log(val.target.value);
-        this.onSearch(val.target.value);
+      (formInput: any) => {
+        if (formInput.target.value !== null && formInput.target.value !== ''
+          && formInput.target.value !== ' ' && !this.listOfSearchWords.includes(formInput.target.value)) {
+          this.listOfSearchWords.push(formInput.target.value.trim());
+        }
+        formInput.target.value = '';
       }
     );
   }
 
   async onSearch(search) {
-    if (typeof(search) === 'string') {
-      await this.appService.onSearch(this.appService.splitWord(search));
-    } else {
-      await this.appService.onSearch(this.appService.splitWord(search.value));
-    }
+    await this.appService.onSearch(this.listOfSearchWords);
     this.listOfKeywords = this.appService.getKeywords();
     this.showResult();
     this.isLike = false;
+    this.listOfSearchWords = [];
   }
 
   showResult() {
@@ -110,5 +110,9 @@ export class ResultComponent implements OnInit, AfterViewInit {
   setLike() {
     this.appService.setStatistic(0);
     this.isLike = true;
+  }
+
+  onDelete(index) {
+    this.listOfSearchWords.splice(index, 1);
   }
 }

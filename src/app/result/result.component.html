@@ -7,19 +7,27 @@
           <div class="col-xl-8">
             <div class="input-group searchBox">
               <span class="input-group-addon" id="basic-addon1">
-                <span class="fa fa-info-circle" placement="bottom" ngbTooltip="ขั้นระหว่างคีย์เวิร์ดด้วยช่องว่าง เช่น 'นก พระเครื่อง สามเหลี่ยม'"></span>
+                <span 
+                  class="fa fa-info-circle" 
+                  placement="bottom" 
+                  ngbTooltip="กรอกข้อมูลเป็นคีย์เวิร์ด จากนั้นข้อมูลที่กรอกจะแสดงด้านล่าง"
+                  ></span>
               </span>
               <input 
                 type="text" 
                 class="form-control" 
                 [(ngModel)]="searchKey" 
                 [ngModelOptions]="{standalone: true}" 
-                placeholder="กรอกข้อมูลเช่น 'นก พระเครื่อง สามเหลี่ยม'" 
+                placeholder="กรอกคำค้นหา" 
                 #searchWord
                 id="input"
                 >
               <span class="input-group-btn">
-                <button class="btn btn-secondary fa fa-search" (click)="onSearch(searchWord)" type="submit"></button>
+                <button 
+                  class="btn btn-secondary fa fa-search" 
+                  (click)="onSearch(searchWord)" 
+                  type="submit"
+                  ></button>
               </span>
             </div>
           </div>
@@ -27,24 +35,36 @@
       </form>
     </div>
   </div>
-    <div class="container-fluid footer" *ngIf="showObject.length > 0">
+    <div class="container-fluid footer" *ngIf="showObject.length > 0 || listOfSearchWords.length > 0">
       <div class="container">
         <br><br>
-        <tr>
-          <td>
+          <ng-container *ngIf="listOfSearchWords.length > 0; else elseTemplate">
+            <div class="row keyword-contant">
+              <div class="row btn-group">
+                <div *ngFor="let word of listOfSearchWords; let i=index">
+                  <div class="input-group input-group-sm" style="margin-top: 5px;">
+                    <span class="input-group-addon dbutton" id="basic-addon1">{{ word }}</span>
+                    <span class="input-group-btn">
+                      <button class="btn btn-danger fa fa-times" type="button" (click)="onDelete(i)"></button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div class="row">
             <h3>ถ้าพึงพอใจในผลการค้นหาโปรดกดหัวใจ</h3>
-          </td>
-          <td>
             <button 
-              class="btn btn-danger btn-lg fa fa-heart" 
-              style="margin-left: 10px;"
-              (click)="setLike()"
-              [disabled]="isLike"
-              ></button>
-          </td>
-        </tr>
+                class="btn btn-danger btn-lg fa fa-heart" 
+                style="margin-left: 10px;"
+                (click)="setLike()"
+                [disabled]="isLike"
+                ></button>
+            </div>
+          </ng-template>
+         </div>
       </div>
-    </div>
   <div class="container content">
     <ng-container *ngIf="showObject.length > 0; else elseTemplate">
       <div class="row" *ngFor="let obj of showObject">

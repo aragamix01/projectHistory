@@ -40,3 +40,20 @@ td{
     margin-top: 50px;
     font-size: 18px;
 }
+
+.dbutton {
+  /* background-color: #0035bb !important; */
+  cursor: default;
+  background-color: #075ba5 !important;
+  border-color: #075ba5 !important;
+  color: white !important;
+  margin-left: 10px;
+}
+
+.keyword-contant {
+  background-color: rgb(235, 235, 235);
+  border-radius: 5px;
+  padding: 20px;
+  min-height: 70px;
+  max-width: 800px;
+}

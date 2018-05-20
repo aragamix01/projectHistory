@@ -28,7 +28,7 @@
     <div class="col-lg-8 keyword-contant">
       <div class="row btn-group">
         <div *ngFor="let word of libraryWord; let i=index">
-          <div class="input-group input-group-sm">
+          <div class="input-group input-group-sm"  style="margin-top: 5px;">
             <span class="input-group-addon dbutton" id="basic-addon1">{{ word }}</span>
             <span class="input-group-btn">
               <button class="btn btn-danger fa fa-times" type="button" (click)="onDelete(i)"></button>
